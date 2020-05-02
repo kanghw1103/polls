@@ -1,6 +1,5 @@
 # polls/urls.py
 from django.urls import path
-
 from . import views
 
 app_name = 'polls'      # 앱의 이름공간을 지정
@@ -15,5 +14,6 @@ urlpatterns = [
     # path('<int:question_id>/results/', views.results, name='results'),
     path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
     # ex: /polls/5/vote/
+    # path('<int:question_id>/vote/', views.vote, name='vote'),
     path('<int:question_id>/vote/', views.vote, name='vote'),
 ]

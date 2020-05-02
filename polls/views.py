@@ -1,8 +1,7 @@
-# polls/views.py
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
-from django.views import generic      # !!!
+from django.views import generic
 
 from .models import Choice, Question
 
@@ -27,6 +26,7 @@ class ResultsView(generic.DetailView):
 
 
 def vote(request, question_id):
+    # 이전과 동일함
     question = get_object_or_404(Question, pk=question_id)
     try:
         selected_choice = question.choice_set.get(pk=int(request.POST['choice']))
@@ -42,5 +42,3 @@ def vote(request, question_id):
         # POST 데이터 처리가 성공하면, 항상 HttpResponseRedirect를 반환하라.
         # 이렇게 해야, 사용자가 돌아가기 버튼을 클릭해도 두번 게시되는 현상을 방지할 수 있다.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
-
-
